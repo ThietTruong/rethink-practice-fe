@@ -29,9 +29,8 @@ jobs:
     # 'ubuntu-latest' means it will run on the latest version of Ubuntu Linux.
     runs-on: ubuntu-latest
 
-    # 'if' condition ensures this job only runs if the event is a 'pull_request'.
-    # This prevents it from running twice if a 'push' also triggers the workflow.
-    if: github.event_name == 'pull_request'
+    # The 'if' condition has been removed from this job.
+    # This means this job will now run whenever the workflow is triggered (i.e., on pull_request to main, or push to main).
 
     # 'steps' are a sequence of tasks that will be executed as part of this job.
     steps:
