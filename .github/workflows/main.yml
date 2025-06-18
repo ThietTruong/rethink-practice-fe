@@ -128,27 +128,27 @@ jobs:
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v1.0.0 # A popular action for SSHing into remote servers
         with:
-          host: ${{ secrets.EC2_HOST }}             # Your EC2 instance's public IP or hostname
-          username: ${{ secrets.EC2_USERNAME }}     # The SSH username for your EC2 (e.g., 'ubuntu', 'ec2-user')
-          key: ${{ secrets.SSH_PRIVATE_KEY }}       # Your SSH private key (stored as a GitHub Secret)
+          host: ${{ secrets.EC2_HOST }} # Your EC2 instance's public IP or hostname
+          username: ${{ secrets.EC2_USERNAME }} # The SSH username for your EC2 (e.g., 'ubuntu', 'ec2-user')
+          key: ${{ secrets.SSH_PRIVATE_KEY }} # Your SSH private key (stored as a GitHub Secret)
           script: |
             echo "--- Starting EC2 Deployment ---"
             # Replace 'your-docker-hub-username/your-app-name:latest' with your actual image name
             # Replace 'your-app-container' with a desired name for your running Docker container
             # Replace '80' and '3000' with your actual host and container ports for Next.js
-            
+
             # Stop and remove any existing container for your app
-            if docker ps -a --format '{{.Names}}' | grep -q "your-app-container"; then
-              echo "Stopping existing container: your-app-container"
-              docker stop your-app-container
-              docker rm your-app-container
+            if docker ps -a --format '{{.Names}}' | grep -q "rethink-practice-fe"; then
+              echo "Stopping existing container: rethink-practice-fe"
+              docker stop rethink-practice-fe
+              docker rm rethink-practice-fe
             else
               echo "No existing container named your-app-container to stop/remove."
             fi
 
             # Pull the latest Docker image
             echo "Pulling latest Docker image: your-docker-hub-username/your-app-name:latest"
-            docker pull your-docker-hub-username/your-app-name:latest
+            docker pull thiettruong/rethink-practice-fe:latest
 
             # Run the new Docker container
             # Make sure to map the correct port (e.g., Next.js often runs on 3000 inside the container)
