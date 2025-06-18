@@ -149,6 +149,10 @@ jobs:
             # Run the new Docker container
             # Make sure to map the correct port (e.g., Next.js often runs on 3000 inside the container)
             echo "Running new Docker container..."
-            docker run -d --name rethink-practice-fe -p 3000:3000 thiettruong/rethink-practice-fe:latest
+            docker run -d \
+              --name rethink-practice-fe \
+              --network app_app-network \
+              -p 3000:3000 \
+              thiettruong/rethink-practice-fe:latest
 
             echo "Deployment to EC2 finished successfully."
